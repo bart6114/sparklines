@@ -3,6 +3,6 @@ Title: Generates sparklines (HTML)
 Version: 0.0.1
 Authors@R: person("Bart", "Smeets", , "bartsmeets86@gmail.com.com", role = c("aut", "cre"))
 Description: Generates sparklines (HTML canvas) based on the nifty jQuery Sparklines library (http://omnipotent.net/jquery.sparkline/) in combination with htmlwidgets
-Depends: R (>= 3.0.0)
+Depends: R (>= 3.0.0), htmlwidgets
 License: MIT
 LazyData: true
