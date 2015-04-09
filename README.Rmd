@@ -1,0 +1,37 @@
+---
+title: "Sparkline htmlwidget"
+output: html_document
+---
+
+This _Sparkline htmlwidget_ is based on the nifty [jQuery Sparklines](http://omnipotent.net/jquery.sparkline/#s-about). [htmlwidgets for R](http://www.htmlwidgets.org/) has made it extremely easy to access and use html widgets from R.
+
+Usage is quite straightforward. First install the package using ```devtools```.
+
+```{r, eval=FALSE}
+devtools::install_github("Bart6114/sparklines")
+```
+
+After installation you're ready to go. Let's get some data on the daily results of the GOOG stock.
+
+```{r, echo=FALSE, warning=FALSE}
+library(quantmod); library(dplyr)
+
+GOOG <-
+  getSymbols("GOOG", src = 'yahoo', from = '2015-03-01', env = NULL) %>%
+  as.data.frame %>%
+  mutate(day_result = GOOG.Close - GOOG.Open)
+
+GOOG_daily_result <-
+  as.vector(GOOG$day_result)
+
+GOOG_daily_result
+```
+
+Now show a nice ```bar``` sparkline:
+
+```{r, warning=FALSE}
+sparkline(GOOG_daily_result, "bar")
+```
+
+
+
