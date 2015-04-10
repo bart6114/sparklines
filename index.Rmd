@@ -7,7 +7,7 @@ output:
 
 This _sparkline htmlwidget_ is based on the nifty [jQuery Sparklines](http://omnipotent.net/jquery.sparkline/#s-about).
 
-[htmlwidgets for R](http://www.htmlwidgets.org/) has made it extremely easy to access and use html widgets from R.
+[htmlwidgets for R](http://www.htmlwidgets.org/) has made it extremely easy to integrate, access and use html widgets from R.
 
 ### Installation
 
@@ -59,11 +59,41 @@ sparkline(GOOG_daily_result, "tristate")
 sparkline(GOOG_daily_result, "box")
 ```
 
+### Shiny
+
+You can also use sparklines in a Shiny app. Just test the following minimal example and roll from there.
+
+```{r, eval=FALSE}
+library(shiny)
+library(sparklines)
+
+server <- function(input, output) {
+  output$spark <- renderSparkline({
+    sparkline(runif(input$values, -5, 5), input$chart_type)
+  })
+  
+  
+}
+
+ui <- fluidPage(
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("values", "Number of values:", min = 5, max = 100, value = 10),
+      selectInput("chart_type", "Chart type", choices = list("line","bar","tristate","box"))
+    ),
+    mainPanel(sparklineOutput("spark"))
+  )
+)
+
+shinyApp(ui = ui, server = server)
+```
+
+
 
 ### Further information
 
 Type ```?sparkline``` to open up the function's R documentation.
 
-Almost all chart types and configuration options as defined at http://omnipotent.net/jquery.sparkline/#s-docs can be used.
+Almost all chart types and configuration options, as defined at http://omnipotent.net/jquery.sparkline/#s-docs, can be used.
 
-If you encounter issues, please open an issue at this GitHub repository.
+If you encounter any issues, please open an issue at the [sparklines GitHub repository](https://github.com/Bart6114/sparklines).
