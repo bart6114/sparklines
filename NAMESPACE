@@ -3,4 +3,6 @@
 export(renderSparkline)
 export(sparkline)
 export(sparklineOutput)
+export(sparklines_html)
+import(htmltools)
 import(htmlwidgets)

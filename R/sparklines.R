@@ -3,36 +3,47 @@
 #' A sparkline htmlwidget using the nifty jQuery Sparklines library (http://omnipotent.net/jquery.sparkline)
 #'
 #' @import htmlwidgets
+#' @import htmltools
 #' @param values A vector of values
 #' @param chart_type The chart type: one of 'line' (default), 'bar', 'tristate', 'discrete', 'bullet', 'pie' or 'box'
 #' @param config A named list of options as can be found on http://http://omnipotent.net/jquery.sparkline/#s-docs
 #' @examples
 #' sparkline(c(1,2,-1,0,-1,-2,4,5,6), "bar", list(fillColor="white"))
 #' @export
-sparkline <- function(values, chart_type = 'line', config = list(), width = "100px", height = "20px") {
+sparkline <- function(values, chart_type = 'line', config = list(), width = 100, height = 20) {
 
-  initial_config = list(
+  default_config = list(
     type = chart_type,
     width = width,
     height = height)
 
-  config = c(initial_config, config)
+  config = c(default_config, config)
 
-  # forward options using x
-  x = list(
+  params = list(
     values = values,
-    config = config
+    config = config,
+    height = height,
+    width = width
   )
 
   # create widget
   htmlwidgets::createWidget(
     name = 'sparklines',
-    x,
+    params,
     width = width,
-    height = height,
-    package = 'sparklines'
+    height = height
+    #package = 'sparklines',
+#     sizingPolicy = htmlwidgets::sizingPolicy(
+#       viewer.fill = FALSE
+#     )
   )
 }
+
+#' @export
+sparklines_html <- function(id, style, class, ...){
+  tags$span(id = id, class = class)
+}
+
 
 #' Widget output function for use in Shiny
 #'

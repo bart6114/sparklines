@@ -4,8 +4,8 @@
 \alias{sparkline}
 \title{Sparkline htmlwidget}
 \usage{
-sparkline(values, chart_type = "line", config = list(), width = "100px",
-  height = "20px")
+sparkline(values, chart_type = "line", config = list(), width = 100,
+  height = 20)
 }
 \arguments{
 \item{values}{A vector of values}
