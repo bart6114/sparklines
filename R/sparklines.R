@@ -31,11 +31,8 @@ sparkline <- function(values, chart_type = 'line', config = list(), width = 100,
     name = 'sparklines',
     params,
     width = width,
-    height = height
-    #package = 'sparklines',
-#     sizingPolicy = htmlwidgets::sizingPolicy(
-#       viewer.fill = FALSE
-#     )
+    height = height,
+    package = 'sparklines'
   )
 }
 
